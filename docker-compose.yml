@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    volumes:
+      - ./frontend/app:/myapp/app
+      - .bash_history:/root/.bash_history
+    #  - ./frontend/app/node_modules:/myapp/app/node_modules
+      - .:/workspace:cached
+      - frontend-vscode:/root/.vscode-server/extensions
+    tmpfs:
+      - /myapp/tmp
+    ports:
+      - "5173:5173"
+
+
+  
+volumes:
+  # node_modules: {}
+  frontend-vscode: {}
